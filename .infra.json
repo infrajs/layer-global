@@ -1,0 +1,4 @@
+{
+	"dependencies":"event",
+	"js":["global.js","infra.js"]
+}

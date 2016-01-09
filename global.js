@@ -1,7 +1,7 @@
-define('?-layer-global/global.js', ['?-event/event.js'], function () {
+(function () {
 	//global:(bool);// проверка есть tpl или нет. Если tpl будет загружен пустой слой не покажется
 	//globalignoredata:(bool); загружать повторно данные или нет
-	infra.wait(infrajs,'oninit',function(){
+	Event.one('Infrajs.oninit',function(){
 		infrajs.externalAdd('global','external');
 		infrajs.parsedAdd(function(layer){
 			if(!layer.global)return '';
@@ -40,7 +40,7 @@ define('?-layer-global/global.js', ['?-event/event.js'], function () {
 				for(var path in g.unloads){
 					infra.unload(path);
 				}
-				//infra.when(infrajs,'onshow',function(){
+				//Event.onext('Infrajs.onshow', function(){
 					for(var i=0,l=g.layers.length;i<l;i++){
 						var layer=g.layers[i];
 						if(!layer.onsubmit)continue;
@@ -77,4 +77,4 @@ define('?-layer-global/global.js', ['?-event/event.js'], function () {
 			//}
 		});
 	}
-});
+})();
