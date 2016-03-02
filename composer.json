@@ -1,7 +1,5 @@
 {
 	"name": "infrajs/layer-global",
-	"license": "GPL3",
-	"autoload": {
-		"psr-4": { "infrajs\\layer\\global\\": "/" }
-	}
+	"homepage":"https://github.com/infrajs/layer-global",
+	"license": "GPL3"
 }
