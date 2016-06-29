@@ -40,6 +40,7 @@
 				layers.push(ids[i]);
 			}
 			Controller.check(layers);
+			Controller.check();
 		},
 		counter: 1,
 		set: function (names) {
