@@ -1,7 +1,6 @@
 {
 	"name": "infrajs/layer-global",
 	"homepage":"https://github.com/infrajs/layer-global",
-	"license": "GPL3",
 	"dependencies":["event","controller"],
 	"require":{
 		"infrajs/controller":"~1",
