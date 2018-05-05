@@ -1,5 +1,5 @@
 
-Event.handler('Layer.oncheck', function (layer){
+Event.handler('Layer.onshow', function (layer){
 	//global
 	infrajs.checkGlobal(layer);
 },'global:tpl');
