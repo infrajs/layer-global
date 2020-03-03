@@ -1,4 +1,5 @@
 {
 	"dependencies":"event",
-	"js":["Global.js","infra.js"]
+	"js":["Global.js","infra.js"],
+	"require":["infra.php"]
 }
