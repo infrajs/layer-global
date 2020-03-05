@@ -14,7 +14,7 @@
 		});
 	});
 
-	Global = {
+	window.Global = {
 		globals:{},
 		get: function (name) {
 			if (!Global.globals[name]) {
