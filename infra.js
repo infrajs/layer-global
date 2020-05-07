@@ -1,18 +1,18 @@
 import Fire from "/vendor/akiyatkin/load/Fire.js"
+import Global from "/vendor/infrajs/layer-global/Global.js"
 
-Fire.hand(Controller, 'oninit', async () => {
+Fire.hand(Controller, 'init', async () => {
 	Controller.externalAdd('global', 'external');
-	let { Global } = await import('/vendor/infrajs/layer-global/Global.js')
 	Controller.parsedAdd(layer => {
 		if (!layer.global) return;
-		
 		let hash = Global.hash(layer.global)
 		return hash;
 	});
 })
-
+Controller.Global = Global
+infrajs.global = Global
+window.Global = Global
 Event.handler('Layer.onshow', async (layer) => {
 	if (!layer.global) return;
-	let { Global } = await import('/vendor/infrajs/layer-global/Global.js')
 	Global.checkLayer(layer);
 }, 'global:tpl');
