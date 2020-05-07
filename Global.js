@@ -32,7 +32,7 @@ let Global = {
 			layers.push(ids[i]);
 		}
 		Controller.check(layers);
-		//Controller.check();
+		Controller.check();
 	},
 	counter: 1,
 	set: function (names) {
