@@ -1,3 +1,5 @@
+import { Controller } from '/vendor/infrajs/controller/src/Controller.js'
+
 let Global = {
 	globals:{},
 	get: function (name) {
