@@ -16,15 +16,18 @@ import { Event } from '/vendor/infrajs/event/Event.js'
 External.add('global', 'external');
 Parsed.add(layer => {
 	if (!layer.global) return;
-	let hash = Global.hash(layer.global)
-	return hash;
+	let hash = '';
+	[layer.global].flat().map(g => {
+		g = Global.get(g);
+		hash += g.value + ':';
+	});
+	return hash
 });
 Event.handler('Layer.onshow', async (layer) => {
-	if (!layer.global) return;
-	Global.checkLayer(layer);
+	if (!layer.global) return
+	[layer.global].flat().map(n => {
+		var g = Global.get(n);
+		if (layer.json) g.unloads[layer.json] = true;
+		g.layers[layer.id] = layer;
+	})
 }, 'global:tpl');
-
-
-
-Controller.Global = Global
-window.Global = Global

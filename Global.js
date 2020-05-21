@@ -1,4 +1,5 @@
 import { Controller } from '/vendor/infrajs/controller/src/Controller.js'
+import { Load } from '/vendor/akiyatkin/load/Load.js'
 
 let Global = {
 	globals:{},
@@ -12,64 +13,41 @@ let Global = {
 		}
 		return Global.globals[name];
 	},
-	unload: function (name, path) {
-		Each.exec(name, function (n) {
-			var g = Global.get(n);
-			g.unloads[path]=true;
+	unload: function (names, path) {
+		[names].flat().map(name => {
+			var g = Global.get(name)
+			g.unloads[path] = true
 		});
 	},
-	hash: function (global) {
-		var s = '';
-		Each.exec(global, function (g) {
-			g = Global.get(g);
-			s += g.value + ':';
-		});
-		return s
-	},
-	check: function(name) {
-		Global.set(name);
-		var ids = Global.get(name).layers;
-		var layers = [];
-		for (var i in ids) {
-			layers.push(ids[i]);
-		}
-		Controller.check(layers);
-		//Controller.check();
+	check: async name => {
+		Global.set(name)
+
+		// var g = Global.get(name);
+		// var layers = [];
+		// for (var id in g.layers) {
+		// 	layers.push(g.layers[id]);
+		// }
+		// КОнтроллер не умеет обрабатыавть родителей, переданные слови не всегда нужно показывать
+		// await Controller.check(layers);
+		Controller.check();
 	},
 	counter: 1,
 	set: function (names) {
-		Each.exec(names, function (name) {
-			var g = Global.get(name);
+		[names].flat().map(name => {
+			let g = Global.get(name);
 			g.value = Global.counter++;
-			for (var path in g.unloads) {
-				Load.unload(path);
+			for (let path in g.unloads) {
+				Load.drop('json', path)
+				Load.drop('text', path)
+				//Load.unload(path);
 			}
-
-			Each.exec(g.layers, function(layer){
-				if (!layer.onsubmit) return;
-				if (!layer.config) return;
-				if (layer.config && layer.config.ans) layer.config.ans = {};
-			});
-		});
-	},
-	checkLayer: function (layer) {
-		var json = '';
-		if (layer.json){
-			if (layer.json.constructor == Array) {
-				json = layer.json[0];
-			} else {
-				json = layer.json;
+			for (let id in g.layers) {
+				let layer = g.layers[id]
+				if (!layer.config?.ans) continue
+				layer.config.ans = {}
 			}
-		}
-		Each.exec(layer.global, function (n) {
-			var g = Global.get(n);
-			if (json) {
-				g.unloads[json] = true;
-			}
-			g.layers[layer.id] = layer;
 		});
 	}
 }
-
+window.Global = Global
 export {Global}
-export default Global
