@@ -1,4 +1,4 @@
-import { Controller } from '/vendor/infrajs/controller/src/Controller.js'
+import { DOM } from '/vendor/akiyatkin/load/DOM.js'
 import { Load } from '/vendor/akiyatkin/load/Load.js'
 
 let Global = {
@@ -29,7 +29,7 @@ let Global = {
 		// }
 		// КОнтроллер не умеет обрабатыавть родителей, переданные слови не всегда нужно показывать
 		// await Controller.check(layers);
-		Controller.check();
+		DOM.emit('check')
 	},
 	counter: 1,
 	set: function (names) {

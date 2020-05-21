@@ -1,6 +1,6 @@
-import { Controller } from '/vendor/infrajs/controller/src/Controller.js'
+import { DOM } from '/vendor/akiyatkin/load/DOM.js'
 
-Controller.hand('init', async () => {
+DOM.once('check', async () => {
 	await import('./init.js')
 })
 
