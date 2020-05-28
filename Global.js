@@ -43,7 +43,7 @@ let Global = {
 			}
 			for (let id in g.layers) {
 				let layer = g.layers[id]
-				if (!layer.config?.ans) continue
+				if (!layer.config || !layer.config.ans) continue
 				layer.config.ans = {}
 			}
 		});
