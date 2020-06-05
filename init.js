@@ -25,7 +25,7 @@ Parsed.add(layer => {
 });
 Event.handler('Layer.onshow', async (layer) => {
 	if (!layer.global) return
-	[layer.global].flat().map(n => {
+	[layer.global].flat(2).map(n => {
 		var g = Global.get(n);
 		if (layer.json) g.unloads[layer.json] = true;
 		g.layers[layer.id] = layer;

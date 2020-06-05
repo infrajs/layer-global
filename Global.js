@@ -29,11 +29,11 @@ let Global = {
 		// }
 		// КОнтроллер не умеет обрабатыавть родителей, переданные слови не всегда нужно показывать
 		// await Controller.check(layers);
-		DOM.emit('check')
+		await DOM.emit('check')
 	},
 	counter: 1,
 	set: function (names) {
-		[names].flat().map(name => {
+		[names].flat(2).map(name => {
 			let g = Global.get(name);
 			g.value = Global.counter++;
 			for (let path in g.unloads) {
