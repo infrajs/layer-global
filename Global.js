@@ -29,7 +29,7 @@ let Global = {
 		// }
 		// КОнтроллер не умеет обрабатыавть родителей, переданные слови не всегда нужно показывать
 		// await Controller.check(layers);
-		await DOM.emit('check')
+		await DOM.puff('check')
 	},
 	counter: 1,
 	set: function (names) {
