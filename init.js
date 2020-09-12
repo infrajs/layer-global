@@ -31,3 +31,13 @@ Event.handler('Layer.onshow', async (layer) => {
 		g.layers[layer.id] = layer;
 	})
 }, 'global:tpl');
+
+
+Event.handler('Layer.onshow', async (layer) => {
+	if (!layer.globaljson) return
+	[layer.globaljson].flat(2).map(n => {
+		var g = Global.get(n);
+		if (layer.json) g.unloads[layer.json] = true;
+		g.layers[layer.id] = layer;
+	})
+}, 'global:tpl');
