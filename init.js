@@ -15,7 +15,7 @@ import { Event } from '/vendor/infrajs/event/Event.js'
 
 External.add('global', 'external');
 Parsed.add(layer => {
-	if (!layer.global) return;
+	if (!layer.global) return;	
 	let hash = '';
 	[layer.global].flat().map(g => {
 		g = Global.get(g);
